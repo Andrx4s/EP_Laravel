@@ -56,4 +56,16 @@ class UserController extends Controller
         User::create($requests);
         return redirect()->route('login')->with(['register' => true]);
     }
+
+    /**
+     * Выход из аккаунта пользователя
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->regenerate();
+        return redirect()->route('login');
+    }
 }
