@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Http\Requests\Admin\Pruduct\ProductCreateValidation;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -10,11 +9,6 @@ use Illuminate\Http\Request;
 class ProductController extends Controller
 {
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
-=======
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function index()
@@ -65,7 +59,6 @@ class ProductController extends Controller
     /**
      * @param Product $product
      * @return void
->>>>>>> b955ab1 (Version 1.0.1)
      */
     public function edit(Product $product)
     {
@@ -73,17 +66,9 @@ class ProductController extends Controller
     }
 
     /**
-<<<<<<< HEAD
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
-=======
      * @param Request $request
      * @param Product $product
      * @return void
->>>>>>> b955ab1 (Version 1.0.1)
      */
     public function update(Request $request, Product $product)
     {
@@ -91,15 +76,8 @@ class ProductController extends Controller
     }
 
     /**
-<<<<<<< HEAD
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
-=======
      * @param Product $product
      * @return void
->>>>>>> b955ab1 (Version 1.0.1)
      */
     public function destroy(Product $product)
     {

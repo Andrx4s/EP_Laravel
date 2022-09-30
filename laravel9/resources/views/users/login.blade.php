@@ -13,7 +13,7 @@
                     @error('auth')
                         <div class="alert alert-danger">Логин или пароль неверный</div>
                     @enderror
-                    @if(!session()->has('register'))
+                    @if(session()->has('register'))
                         <div class="alert alert-primary">Вы успешно зарегисрированы, авторизируйтесь!</div>
                     @endif
                         <form method="POST" action="{{route('login')}}">
