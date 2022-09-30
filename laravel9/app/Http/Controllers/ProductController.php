@@ -2,58 +2,63 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Admin\Pruduct\ProductCreateValidation;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function index()
     {
-        //
+        $products = Product::paginate(15);
+        return view('admin.product.index', compact('products'));
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function create()
     {
-        //
+        return view('admin.product.createOrUpdate');
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param ProductCreateValidation $request
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(ProductCreateValidation $request)
     {
-        //
+        $validate = $request->validated();
+        unset($validate['photo_file']);
+        # public/asd.jpg
+        $photo = $request->file('photo_file')->store('public');
+        # Explode => / => public/asd,jpg => ['public', 'asd.jpg']
+        $validate['photo'] = explode('/', $photo)[1];
+
+        Product::create($validate);
+        return back()->with(['success' => true]);
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
+     * @param Product $product
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function show(Product $product)
     {
-        //
+        $breadcrumbs = [
+            ['routeName' => 'welcome', 'name' => 'Главная страница'],
+            ['routeName' => 'admin.product.index', 'name' => 'Все продукты'],
+            ['name'=> $product->name]
+        ];
+        return view('admin.product.show', compact('product', 'breadcrumbs'));
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
+     * @param Product $product
+     * @return void
      */
     public function edit(Product $product)
     {
@@ -61,11 +66,9 @@ class ProductController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param Product $product
+     * @return void
      */
     public function update(Request $request, Product $product)
     {
@@ -73,10 +76,8 @@ class ProductController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
+     * @param Product $product
+     * @return void
      */
     public function destroy(Product $product)
     {
