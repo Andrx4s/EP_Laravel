@@ -25,5 +25,8 @@ Route::middleware('auth')->group(function() {
         });
     });
 
+    Route::get('/cabinet', [UserController::class, 'cabinet'])->name('cabinet');
+    Route::get('/cabinet/edit', [UserController::class, 'cabinetEdit'])->name('cabinetEdit');
+    Route::get('/cabinet/edit', [UserController::class, 'cabinetEditPost']);
     Route::get('/logout', [UserController::class, 'logout'])->name('logout');
 });

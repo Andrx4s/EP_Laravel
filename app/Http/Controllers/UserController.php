@@ -57,6 +57,25 @@ class UserController extends Controller
         return redirect()->route('login')->with(['register' => true]);
     }
 
+
+    public function cabinet()
+    {
+        return view('users.cabinet');
+    }
+
+
+    public function cabinetEdit()
+    {
+        return view('users.edit');
+    }
+
+
+    public function cabinetEditPost()
+    {
+
+    }
+
+
     /**
      * Выход из аккаунта пользователя
      * @param Request $request
