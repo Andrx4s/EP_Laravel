@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginValidation;
 use App\Http\Requests\RegisterValidation;
+use App\Http\Requests\User\EditUserValidation;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Testing\Fluent\Concerns\Has;
 
 class UserController extends Controller
 {
@@ -70,9 +72,14 @@ class UserController extends Controller
     }
 
 
-    public function cabinetEditPost()
+    public function cabinetEditPost(EditUserValidation $request)
     {
-
+        $arr = $request->validated();
+        if($arr['password']) unset($arr['password']);
+        else $arr['password'] = Hash::make($arr['password']);
+        $user = Auth::user();
+        $user->update($arr);
+        return back()->with(['success' => true]);
     }
 
 

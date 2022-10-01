@@ -45,6 +45,7 @@
                                 </ul>
                             </li>
                         @endif
+                        <li class="nav-item"><a class="nav-link" href="{{route('order.basket')}}">Корзина</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{route('logout')}}">Выход</a></li>
                     @endauth
                 </ul>
