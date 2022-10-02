@@ -13,6 +13,8 @@
                     <div class="card-body text-center">
                         <img src="/public/storage/{{$product->photo}}" class="card-img-top w-50" alt="{{$product->name}}">
                         <p class="card-text">{{$product->description}}</p>
+                        <p class="card-text">Стоимость товара: {{$product->price}}</p>
+                        <p class="card-text">Страна производста: {{$product->made}}</p>
                         <a href="{{route('admin.product.edit', ['product' => $product->id])}}" class="btn btn-primary">Редактировать</a>
                         <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
                             Удалить
