@@ -94,4 +94,17 @@ class UserController extends Controller
         $request->session()->regenerate();
         return redirect()->route('login');
     }
+
+    public function users()
+    {
+        $breadcrumbs = [
+            ['routeName' => 'welcome', 'name' => 'Главная страница'],
+            ['name'=> 'Пользователи']
+        ];
+        $users = User::all();
+
+        # compact => [ 'users', => $users ]
+        return view('admin.users.user', compact('users', 'breadcrumbs'));
+    }
+
 }

@@ -41,7 +41,7 @@
                                     <li><a class="dropdown-item" href="{{route('admin.product.create')}}">Добавить товар</a></li>
                                     <li><a class="dropdown-item" href="{{route('admin.product.index')}}">Все товары</a></li>
                                     <li><a class="dropdown-item" href="{{route('order.all', ['myOrder' => 'admin'])}}">Просмотр заказов</a></li>
-                                    <li><a class="dropdown-item" href="#">Пользователи</a></li>
+                                    <li><a class="dropdown-item" href="{{route('users')}}">Пользователи</a></li>
                                 </ul>
                             </li>
                         @endif

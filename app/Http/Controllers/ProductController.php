@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Admin\Product\ProductCreateValidation;
 use App\Http\Requests\Admin\Product\ProductUpdateValidation;
-use App\Http\Requests\Admin\Pruduct\ProductCreateValidation;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
