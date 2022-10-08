@@ -2,6 +2,7 @@
 
 @section('title', 'Страница всех пользователей')
 
+{{--Секция для вывода всех пользователей--}}
 @section('content')
     <div class="container">
         <div class="row">

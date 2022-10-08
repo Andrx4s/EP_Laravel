@@ -14,11 +14,16 @@ Route::get('/register', [UserController::class, 'register'])->name('register');
 Route::post('/register', [UserController::class, 'registerPost']);
 Route::get('/product/{product}', [ProductController::class, 'firstProduct'])->name('product');
 
+// Промежуточная проверка авторизации
 Route::middleware('auth')->group(function() {
 
+//  Промежуточная проверка ролей авторизованных аккаунтов
     Route::middleware('role:user,admin')->group(function () {
 
+//      Промежуточная проверка на роль админа
         Route::middleware('role:admin')->group(function () {
+
+//          Совместное использование атрибутов маршута
             Route::group(['prefix' => '/admin', 'as' => 'admin.'], function () {
                 Route::resource('/product', ProductController::class);
             });
@@ -26,6 +31,7 @@ Route::middleware('auth')->group(function() {
             Route::get('/completed/{order}', [OrderController::class, 'completed'])->name('completed');
         });
 
+//        Совместное использование атрибутов маршута
         Route::group(['prefix'=> '/order', 'as' => 'order.'], function (){
             Route::get('/basket', [OrderController::class, 'basket'])->name('basket');
             Route::post('/basket', [OrderController::class, 'basketPost']);

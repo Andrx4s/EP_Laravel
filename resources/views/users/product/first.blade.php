@@ -1,5 +1,6 @@
 @extends('welcome')
 
+{{--Секция для просмотра одного продукта--}}
 @section('content')
     <div class="container">
         <div class="row">

@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 class OrderController extends Controller
 {
     /**
+     * Вызов страницы с корзиной пользователя
      * @param Request $request
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
@@ -25,6 +26,7 @@ class OrderController extends Controller
     }
 
     /**
+     * Функция вывода продуктов пользователя в корзину
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -40,6 +42,7 @@ class OrderController extends Controller
     }
 
     /**
+     * Функия добавления продукта в корзину
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -54,6 +57,7 @@ class OrderController extends Controller
     }
 
     /**
+     * Функция создания заказа
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -84,6 +88,11 @@ class OrderController extends Controller
         return  redirect()->route('welcome');
     }
 
+    /**
+     * Вызов страницы с заказами пользователя или все для админа
+     * @param $myOrder
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function orders($myOrder = 'my')
     {
         $orders = Order::select('*');
@@ -95,6 +104,11 @@ class OrderController extends Controller
         return view('orders.view', ['orders' => $orderItems]);
     }
 
+    /**
+     * Функция для отмены заказа
+     * @param Order $order
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function cancel(Order $order)
     {
         if(Auth::user()->role == 'admin'){
@@ -110,6 +124,11 @@ class OrderController extends Controller
         return back()->with('success', true);
     }
 
+    /**
+     * Функция для завершения заказа
+     * @param Order $order
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function completed(Order $order)
     {
         $order->status = 'Завершен';

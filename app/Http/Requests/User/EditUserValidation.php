@@ -7,7 +7,7 @@ use Illuminate\Foundation\Http\FormRequest;
 class EditUserValidation extends FormRequest
 {
     /**
-     * Determine if the user is authorized to make this request.
+     * Определяет авторизован ли пользователь для выполнения запроса
      *
      * @return bool
      */
@@ -17,7 +17,7 @@ class EditUserValidation extends FormRequest
     }
 
     /**
-     * Get the validation rules that apply to the request.
+     * Правила проверки для запросов
      *
      * @return array<string, mixed>
      */

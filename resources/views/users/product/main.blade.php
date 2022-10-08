@@ -1,5 +1,6 @@
 @extends('welcome')
 
+{{--Секция вывода всех продуктов--}}
 @section('content')
     <div class="container mt-3">
         <div class="row">

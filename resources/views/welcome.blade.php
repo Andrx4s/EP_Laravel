@@ -1,3 +1,4 @@
+{{--Корневой шаблон навигации--}}
 <!doctype html>
 <html lang="en">
 <head>

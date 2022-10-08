@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 class ProductController extends Controller
 {
     /**
+     * Вызов страницы с выводом 15 продуктов для админа
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function index()
@@ -19,6 +20,7 @@ class ProductController extends Controller
     }
 
     /**
+     * Вызов страницы для создания продукта
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function create(Request $request)
@@ -32,6 +34,7 @@ class ProductController extends Controller
     }
 
     /**
+     * Функция для создания продукта
      * @param ProductCreateValidation $request
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -49,6 +52,7 @@ class ProductController extends Controller
     }
 
     /**
+     * Вызов страницы просмотра одного продукта для админа
      * @param Product $product
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
@@ -63,6 +67,8 @@ class ProductController extends Controller
     }
 
     /**
+     * Вызов страницы для редактирования продукта
+     * @param Request $request
      * @param Product $product
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
@@ -79,8 +85,10 @@ class ProductController extends Controller
     }
 
     /**
+     * Функция для редактирования продукта
      * @param ProductUpdateValidation $request
      * @param Product $product
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(ProductUpdateValidation $request, Product $product)
     {
@@ -97,6 +105,7 @@ class ProductController extends Controller
     }
 
     /**
+     * Функция для удаления продукта
      * @param Product $product
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -106,12 +115,21 @@ class ProductController extends Controller
         return redirect()->route('admin.product.index');
     }
 
+    /**
+     * Вызов страницы с 25 продуктами на главную для пользователя
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function indexMain()
     {
         $products = Product::simplePaginate(25);
         return view('users.product.main', compact('products'));
     }
 
+    /**
+     * Вызов страницы для просмотра одного продукта для пользователя
+     * @param Product $product
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function firstProduct(Product $product)
     {
         $breadcrumbs = [

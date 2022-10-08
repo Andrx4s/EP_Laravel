@@ -1,5 +1,6 @@
 @extends('welcome')
 
+{{--Секция создания и редактирования продуктов--}}
 @section('content')
     <div class="container">
         <div class="row">
